@@ -1,0 +1,6 @@
+@lenox_rrhh_backend_challenge_HostAddress = http://localhost:5221
+
+GET {{lenox_rrhh_backend_challenge_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
