@@ -12,11 +12,11 @@ public sealed class EmpleadoService : IEmpleadoService
         => this.context = context;
 
     public async Task<PagedResponse<EmpleadoListadoDto>> BuscarEmpleadosAsync(
-    int empresaId,
-    string? q,
-    int page,
-    int pageSize,
-    CancellationToken cancellationToken)
+        int empresaId, 
+        string? q,
+        int page, 
+        int pageSize, 
+        CancellationToken cancellationToken)
     {
         var query = context.Empleados.AsNoTracking()
             .Where(e => e.EmpresaId == empresaId && e.Activo);
