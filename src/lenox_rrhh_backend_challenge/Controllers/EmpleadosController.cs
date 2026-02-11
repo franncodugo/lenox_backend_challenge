@@ -1,7 +1,6 @@
 ﻿using lenox_rrhh_backend_challenge.DTOs;
 using lenox_rrhh_backend_challenge.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 
 namespace lenox_rrhh_backend_challenge.Controllers;
 

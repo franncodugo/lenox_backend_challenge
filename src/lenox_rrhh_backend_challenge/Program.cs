@@ -8,10 +8,21 @@ builder.Services.AddControllers();
 
 // InMemoryDatabase. 
 builder.Services.AddDbContext<appDbContext>(options =>
-    options.UseInMemoryDatabase("LenoxDb"));
+    options.UseInMemoryDatabase("appDbContext"));
 
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -23,7 +34,14 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lenox RRHH V1");
+
+        c.RoutePrefix = string.Empty;
+    });
+    app.UseCors("AllowAll");
 }
 
 app.UseHttpsRedirection();
